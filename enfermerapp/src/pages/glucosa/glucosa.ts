@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
-import { AlertController } from 'ionic-angular';
+import { IonicPage, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-/*
-  Generated class for the Glucosa page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+/**
+ * Generated class for the Glucosa page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+@IonicPage()
 @Component({
   selector: 'page-glucosa',
-  templateUrl: 'glucosa.html'
+  templateUrl: 'glucosa.html',
 })
-export class GlucosaPage {
+export class Glucosa {
   valoresGlu = [];
   vacio = 1;
 

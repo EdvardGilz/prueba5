@@ -39,25 +39,25 @@
     },
     "installed_plugins": {
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.enfermerapp987668"
+            "PACKAGE_NAME": "com.ionicframework.enfermerapp372432"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ionicframework.enfermerapp987668"
+            "PACKAGE_NAME": "com.ionicframework.enfermerapp372432"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.enfermerapp987668"
+            "PACKAGE_NAME": "com.ionicframework.enfermerapp372432"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.ionicframework.enfermerapp987668"
+            "PACKAGE_NAME": "com.ionicframework.enfermerapp372432"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.enfermerapp987668"
+            "PACKAGE_NAME": "com.ionicframework.enfermerapp372432"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.enfermerapp987668"
+            "PACKAGE_NAME": "com.ionicframework.enfermerapp372432"
         },
         "cordova-sqlite-storage": {
-            "PACKAGE_NAME": "com.ionicframework.enfermerapp987668"
+            "PACKAGE_NAME": "com.ionicframework.enfermerapp372432"
         }
     },
     "dependent_plugins": {},

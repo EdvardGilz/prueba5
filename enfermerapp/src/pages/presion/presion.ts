@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
-import { AlertController } from 'ionic-angular';
+import { IonicPage, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-/*
-  Generated class for the Presion page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+/**
+ * Generated class for the Presion page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+@IonicPage()
 @Component({
   selector: 'page-presion',
-  templateUrl: 'presion.html'
+  templateUrl: 'presion.html',
 })
-export class PresionPage {
+export class Presion {
   valoresPres = [];
   vacio = 1;
 

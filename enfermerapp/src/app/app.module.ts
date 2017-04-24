@@ -1,24 +1,26 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { BrowserModule } from '@angular/platform-browser';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { HorarioPage } from '../pages/horario/horario';
-import { PresionPage } from '../pages/presion/presion';
-import { GlucosaPage } from '../pages/glucosa/glucosa';
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { Horario } from '../pages/horario/horario';
+import { Presion } from '../pages/presion/presion';
+import { Glucosa } from '../pages/glucosa/glucosa';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    HorarioPage,
-    PresionPage,
-    GlucosaPage
+    Horario,
+    Presion,
+    Glucosa
   ],
   imports: [
+    BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -26,9 +28,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
-    HorarioPage,
-    PresionPage,
-    GlucosaPage
+    Horario,
+    Presion,
+    Glucosa
   ],
   providers: [
     StatusBar,
