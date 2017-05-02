@@ -29,8 +29,8 @@
 
 <ion-content padding>
   <ion-list *ngIf="vacio == 0">
-    <ion-item *ngFor="let glucosa of valoresGlu">
-      <h2>{{glucosa.ayunas}} <ion-icon name="water"></ion-icon> {{glucosa.glucosa}}</h2>
+    <ion-item *ngFor="let glucosa of valoresGlu" (click)="detalle(glucosa)">
+      <h2>{{glucosa.ayunas}}<br> <ion-icon name="water"></ion-icon> {{glucosa.glucosa}}</h2>
       <p>{{glucosa.obs}}</p>
       <ion-note item-right>{{glucosa.fecha}}</ion-note>
     </ion-item>

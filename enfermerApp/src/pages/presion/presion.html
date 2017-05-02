@@ -25,7 +25,7 @@
 
 <ion-content padding>
   <ion-list *ngIf="vacio == 0">
-    <ion-item *ngFor="let presion of valoresPres">
+    <ion-item *ngFor="let presion of valoresPres" (click)="detalle(presion)">
       <h2>{{presion.sys}}/{{presion.dia}} <ion-icon name="heart"></ion-icon> {{presion.puls}}</h2>
       <p>{{presion.obs}}</p>
       <ion-note item-right>{{presion.fecha}}</ion-note>

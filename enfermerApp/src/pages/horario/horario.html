@@ -7,12 +7,32 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Horario</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-right (click)="nuevoRecordatorio()">
+        Agregar recordatorio
+        <ion-icon name='add'></ion-icon>
+      </button>
+      <button ion-button (click)="eliminar()">
+        Eliminar datos
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-list *ngIf="vacio == 0">
+    <ion-item *ngFor="let medicamento of medicamentos">
+      <h2>{{medicamento.diagnostico}}</h2>
+      <div *ngFor="let medicinaData of medicamento.data">
+        <p>{{medicinaData.medicina}}</p>
+      </div>
+      <ion-note item-right>{{medicamento.num}} {{medicamento.txt}} <ion-icon name='ios-radio-button-on' color="secondary"></ion-icon></ion-note>
+    </ion-item>
+  </ion-list>
 
+  <p *ngIf="vacio == 1">Aún no hay ninguna medición</p>
 </ion-content>

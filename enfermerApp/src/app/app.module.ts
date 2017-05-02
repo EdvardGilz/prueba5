@@ -10,6 +10,10 @@ import { HomePage } from '../pages/home/home';
 import { Horario } from '../pages/horario/horario';
 import { Presion } from '../pages/presion/presion';
 import { Glucosa } from '../pages/glucosa/glucosa';
+import { Detalle } from '../pages/detalle/detalle';
+import { Recordatorio } from '../pages/recordatorio/recordatorio';
+
+import { CommonFunctions } from '../providers/common-functions';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,9 @@ import { Glucosa } from '../pages/glucosa/glucosa';
     HomePage,
     Horario,
     Presion,
-    Glucosa
+    Glucosa,
+    Detalle,
+    Recordatorio
   ],
   imports: [
     BrowserModule,
@@ -30,11 +36,14 @@ import { Glucosa } from '../pages/glucosa/glucosa';
     HomePage,
     Horario,
     Presion,
-    Glucosa
+    Glucosa,
+    Detalle,
+    Recordatorio
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    CommonFunctions,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

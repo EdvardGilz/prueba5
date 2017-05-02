@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, AlertController } from 'ionic-angular';
+import { IonicPage, AlertController, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+
+import { Detalle } from '../detalle/detalle';
+
+import { CommonFunctions } from '../../providers/common-functions';
 
 /**
  * Generated class for the Presion page.
@@ -18,7 +22,9 @@ export class Presion {
   vacio = 1;
 
   constructor(public alertCtrl: AlertController,
-              public storage: Storage) {
+              public storage: Storage,
+              public modalCtrl: ModalController,
+              public commonFct: CommonFunctions) {
   }
 
   ionViewWillEnter() {
@@ -33,46 +39,6 @@ export class Presion {
         }
       });
     });
-  }
-
-  getDateVal() {
-    var now = new Date();
-    var diaVal = now.getDate();
-    var dia;
-    var mesVal = now.getMonth() +1;
-    var mes;
-    var horaVal = now.getHours();
-    var hora;
-    var minutosVal = now.getMinutes();
-    var minutos
-    var anio = now.getFullYear();
-
-    if (diaVal <= 9) {
-      dia = "0" + diaVal;
-    }
-    else {
-      dia = diaVal;
-    }
-    if (mesVal <= 9) {
-      mes = "0" + mesVal;
-    }
-    else {
-      mes = mesVal;
-    }
-    if (horaVal <= 9) {
-      hora = "0" + horaVal;
-    }
-    else {
-      hora = horaVal;
-    }
-    if (minutosVal <= 9) {
-      minutos = "0" + minutosVal;
-    }
-    else {
-      minutos = minutosVal;
-    }
-
-    return dia + "/" + mes + "/" + anio + " " + hora + ":" + minutos;
   }
 
   nuevaMedicion() {
@@ -109,7 +75,7 @@ export class Presion {
         {
           text: "Guardar",
           handler: data => {
-            var fecha = this.getDateVal();
+            var fecha = this.commonFct.getDate();
             data.fecha = fecha;
 
             if (data.sys != "" && data.dia != "") {
@@ -150,6 +116,11 @@ export class Presion {
     });
 
     alert.present();
+  }
+
+  detalle(data) {
+    let modal = this.modalCtrl.create(Detalle, {data: data, tipo: 0});
+    modal.present();
   }
 
   eliminar() {

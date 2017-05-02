@@ -1,14 +1,14 @@
 webpackJsonp([2],{
 
-/***/ 312:
+/***/ 436:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__glucosa__ = __webpack_require__(104);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlucosaModule", function() { return GlucosaModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__horario__ = __webpack_require__(108);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HorarioModule", function() { return HorarioModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,26 +18,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var GlucosaModule = (function () {
-    function GlucosaModule() {
+var HorarioModule = (function () {
+    function HorarioModule() {
     }
-    return GlucosaModule;
+    return HorarioModule;
 }());
-GlucosaModule = __decorate([
+HorarioModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__glucosa__["a" /* Glucosa */],
+            __WEBPACK_IMPORTED_MODULE_2__horario__["a" /* Horario */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__glucosa__["a" /* Glucosa */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__horario__["a" /* Horario */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__glucosa__["a" /* Glucosa */]
+            __WEBPACK_IMPORTED_MODULE_2__horario__["a" /* Horario */]
         ]
     })
-], GlucosaModule);
+], HorarioModule);
 
-//# sourceMappingURL=glucosa.module.js.map
+//# sourceMappingURL=horario.module.js.map
 
 /***/ })
 
