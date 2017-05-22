@@ -25,12 +25,16 @@
 
 <ion-content>
   <ion-list *ngIf="vacio == 0">
-    <ion-item *ngFor="let medicamento of medicamentos">
+    <ion-item *ngFor="let medicamento of medicamentos" (click)="getData(medicamento)">
       <h2>{{medicamento.diagnostico}}</h2>
       <div *ngFor="let medicinaData of medicamento.data">
-        <p>{{medicinaData.medicina}}</p>
+        <p>
+          <ion-icon *ngIf="medicinaData.activo == 1" name='ios-radio-button-on' color="secondary"></ion-icon> 
+          <ion-icon *ngIf="medicinaData.activo == 0" name='ios-radio-button-off' color="danger"></ion-icon> 
+          {{medicinaData.medicina}}
+        </p>
       </div>
-      <ion-note item-right>{{medicamento.num}} {{medicamento.txt}} <ion-icon name='ios-radio-button-on' color="secondary"></ion-icon></ion-note>
+      <ion-note item-right>{{medicamento.num}} {{medicamento.txt}}</ion-note>
     </ion-item>
   </ion-list>
 

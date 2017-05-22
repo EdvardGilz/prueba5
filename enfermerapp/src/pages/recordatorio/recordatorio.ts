@@ -16,6 +16,7 @@ import { CommonFunctions } from '../../providers/common-functions';
 })
 export class Recordatorio {
   public medicamentos = [];
+  public medicamentosData = [];
   public disabled = true;
   public disabled2 = true;
   public diagnostico;
@@ -23,11 +24,11 @@ export class Recordatorio {
   constructor(public viewCtrl: ViewController, 
               public alertCtrl: AlertController,
               public commonFct: CommonFunctions) {
-    this.medicamentos.push({"indefinido": false, "diasD": true, "horasD": true, "PTD": true});
+    this.medicamentos.push({"indefinido": false, "diasD": true, "horasD": true, "PTD": true, "activo": 1});
   }
 
   agregar() {
-    this.medicamentos.push({"indefinido": false, "diasD": true, "horasD": true, "PTD": true});
+    this.medicamentos.push({"indefinido": false, "diasD": true, "horasD": true, "PTD": true, "activo": 1});
   }
 
   change(medicamento) {
@@ -65,13 +66,13 @@ export class Recordatorio {
     var proximaToma;
     var ban = 0;
     var proximaTomaTxt;
-    var ultimaTomaBan = 0;;
+    var ultimaTomaBan = 0;
+    var fechaU = this.commonFct.cambiaFecha(this.commonFct.sumarNDias(parseInt(medicamento.dias)));
 
     if (medicamento.indefinido == false) {
       pastillas = parseInt(paso1) * parseInt(medicamento.dias);
       texto = "Tienes que tener " + pastillas + " pastillas.<br>";
     }
-    console.log("split");
     var minutos = medicamento.primerToma.split(":")[1]
     var primerHora = parseInt(medicamento.primerToma.split(":")[0]);
     var horarios = this.commonFct.cambiaHorario(primerHora, minutos, 0);
@@ -95,7 +96,7 @@ export class Recordatorio {
 
         /** ULTIMA TOMA */
         if (medicamento.indefinido == false) {
-          proximaTomaTxt += "<br> Ultima toma: <br>" + this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + this.commonFct.cambiaHorario(proximaToma.split(":")[0], proximaToma.split(":")[1], 0);
+          proximaTomaTxt += "<br><br> Ultima toma: <br>" + fechaU + " " + this.commonFct.cambiaHorario(proximaToma.split(":")[0], proximaToma.split(":")[1], 0);
           medicamento.UltimaTomaFecha = this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + proximaToma;
         }
       }
@@ -113,8 +114,9 @@ export class Recordatorio {
 
         /** ULTIMA TOMA */
         if (medicamento.indefinido == false) {
-          proximaTomaTxt += "<br> Ultima toma: <br>" + this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + this.commonFct.cambiaHorario(horariosArray[i].split(":")[0], horariosArray[i].split(":")[1], 0);
-          medicamento.UltimaTomaFecha = this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + horariosArray[i];
+          var dataHr2 = horariosArray[i];
+          proximaTomaTxt += "<br><br> Ultima toma: <br>" + fechaU + " " + this.commonFct.cambiaHorario(dataHr2.split(":")[0], dataHr2.split(":")[1], 0);
+          medicamento.UltimaTomaFecha = this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + dataHr2;
         }
       }
     }
@@ -127,8 +129,9 @@ export class Recordatorio {
       /** ULTIMA TOMA */
       if (medicamento.indefinido == false) {
         var index = this.commonFct.getValArray();
-        proximaTomaTxt += "<br> Ultima toma: <br>" + this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + this.commonFct.cambiaHorario(horariosArray[index].split(":")[0], horariosArray[index].split(":")[1], 0);
-        medicamento.UltimaTomaFecha = this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + horariosArray[index];
+        var dataHr3 = horariosArray[index];
+        proximaTomaTxt += "<br><br> Ultima toma: <br>" + fechaU + " " + this.commonFct.cambiaHorario(dataHr3.split(":")[0], dataHr3.split(":")[1], 0);
+        medicamento.UltimaTomaFecha = this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + dataHr3;
       }
     }
     medicamento.horarios = horariosArray;
@@ -137,8 +140,9 @@ export class Recordatorio {
     * POR LO TANTO EL ULTIMO ELEMENTO ES LA ULTIMA TOMA */
     /** ULTIMA TOMA */
     if (ultimaTomaBan == 1 && medicamento.indefinido == false) {
-      proximaTomaTxt += "<br> Ultima toma: <br>" + this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + this.commonFct.cambiaHorario(medicamento.horarios[medicamento.horarios.length-1].split(":")[0], medicamento.horarios[medicamento.horarios.length-1].split(":")[1], 0);
-      medicamento.UltimaTomaFecha = this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + medicamento.horarios[medicamento.horarios.length-1];
+      var dataHr4 = medicamento.horarios[medicamento.horarios.length-1];
+      proximaTomaTxt += "<br><br> Ultima toma: <br>" + fechaU + " " + this.commonFct.cambiaHorario(dataHr4.split(":")[0], dataHr4.split(":")[1], 0);
+      medicamento.UltimaTomaFecha = this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + dataHr4;
     }
 
     var subtitulo = "Tu próxima toma es a las:<br>" + proximaTomaTxt;
@@ -152,8 +156,6 @@ export class Recordatorio {
     });
 
     alert.present();
-
-    console.log(medicamento);
 
     this.disabled2 = false;
   }
@@ -184,7 +186,12 @@ export class Recordatorio {
   }
 
   guardar() {
-    this.viewCtrl.dismiss({"success": 1, "data": this.medicamentos, "diagnostico": this.diagnostico});
+    this.medicamentos.forEach(element => {
+      if (element.PrimerTomaFecha) {
+        this.medicamentosData.push(element);
+      }
+    });
+    this.viewCtrl.dismiss({"success": 1, "data": this.medicamentosData, "diagnostico": this.diagnostico});
   }
 
   cerrar() {

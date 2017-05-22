@@ -11,6 +11,8 @@ import * as moment from 'moment';
 @Injectable()
 export class CommonFunctions {
   public valArray: number;
+  public meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                   "Julio", "Agosto", "Septiembr", "Octubre", "Noviembre", "Diciembre"];
 
   constructor() {
   }
@@ -43,6 +45,19 @@ export class CommonFunctions {
   compararHr(hora: number, minutos: number) {
     var fecha = moment().hours(hora).minutes(minutos);
     return moment().isBefore(fecha);
+  }
+
+  compararFecha(fecha) {
+    console.log(fecha);
+    var dia = fecha.split(" ")[0].split("/")[0];
+    var mes = fecha.split(" ")[0].split("/")[1];
+    var anio = fecha.split(" ")[0].split("/")[2];
+    var hora = fecha.split(" ")[1].split(":")[0];
+    var min = fecha.split(" ")[1].split(":")[1];
+
+    var fechaComp = moment().date(dia).month(mes -1).year(anio).hours(hora).minutes(min);
+
+    return moment().isBefore(fechaComp);
   }
 
   verificarHr(horas) {
@@ -108,6 +123,13 @@ export class CommonFunctions {
     else {
       return primerHora;
     }
+  }
+
+  cambiaFecha(fecha) {
+    var numDia = fecha.split("/")[0];
+    var numMes = fecha.split("/")[1] -1;
+
+    return numDia + " de " + this.meses[numMes];
   }
 
 }
