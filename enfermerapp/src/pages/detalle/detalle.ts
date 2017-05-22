@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavParams, ViewController, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the Detalle page.
@@ -27,7 +27,8 @@ export class Detalle {
   public ayunas;
 
   constructor(public navParams: NavParams,
-              public viewCtrl: ViewController) {
+              public viewCtrl: ViewController,
+              public alertCtrl: AlertController) {
     this.data = navParams.get('data');
     this.tipo = navParams.get('tipo');
 
@@ -44,6 +45,40 @@ export class Detalle {
       this.obsG = this.data.obs;
       this.fecha = this.data.fecha;
     }
+  }
+
+  modificar(data) {
+    var val;
+    if (this.tipo == 0) {
+      val = this.obsP;
+    }
+    else {
+      val = this.obsG;
+    }
+    let prompt = this.alertCtrl.create({
+      title: "Modificar las observaciones",
+      inputs: [
+        {
+          name: "obs",
+          value: val
+        }
+      ],
+      buttons: [
+        {
+          text: "Cancelar",
+          role: "cancel"
+        },
+        {
+          text: "Actualizar",
+          handler: data => {
+            this.data.obs = data.obs;
+            this.obsP = data.obs;
+            this.obsG = data.obs;
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
   volver() {

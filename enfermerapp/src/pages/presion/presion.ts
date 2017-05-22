@@ -120,6 +120,9 @@ export class Presion {
 
   detalle(data) {
     let modal = this.modalCtrl.create(Detalle, {data: data, tipo: 0});
+    modal.onDidDismiss(data => {
+      this.storage.set("presionData", this.valoresPres);
+    });
     modal.present();
   }
 

@@ -158,6 +158,9 @@ export class Glucosa {
 
   detalle(data) {
     let modal = this.modalCtrl.create(Detalle, {data: data, tipo: 1});
+    modal.onDidDismiss(data => {
+      this.storage.set("glucosaData", this.valoresGlu);
+    });
     modal.present();
   }
 
