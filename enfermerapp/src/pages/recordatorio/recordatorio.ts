@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, ViewController, AlertController } from 'ionic-angular';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { CommonFunctions } from '../../providers/common-functions';
 
@@ -23,7 +24,8 @@ export class Recordatorio {
 
   constructor(public viewCtrl: ViewController, 
               public alertCtrl: AlertController,
-              public commonFct: CommonFunctions) {
+              public commonFct: CommonFunctions,
+              private localNotifications: LocalNotifications) {
     this.medicamentos.push({"indefinido": false, "diasD": true, "horasD": true, "PTD": true, "activo": 1});
   }
 
@@ -191,7 +193,8 @@ export class Recordatorio {
         this.medicamentosData.push(element);
       }
     });
-    this.viewCtrl.dismiss({"success": 1, "data": this.medicamentosData, "diagnostico": this.diagnostico});
+    console.log(this.medicamentosData);
+    // this.viewCtrl.dismiss({"success": 1, "data": this.medicamentosData, "diagnostico": this.diagnostico});
   }
 
   cerrar() {

@@ -52,7 +52,6 @@ export class Detalle {
       this.fecha = this.data.fecha;
     }
     else if (this.tipo == 2) {
-      console.log(this.data);
       this.diagnostico = this.data.diagnostico;
       this.txt = this.data.txt.charAt(0).toUpperCase() + this.data.txt.slice(1);
 
@@ -73,7 +72,6 @@ export class Detalle {
         element.UltimaTomaFechaMod2 = ultimaHora;
 
         var data = element.horarios;
-        console.log(data);
         for (var i = 0; i < data.length; i++) {
           data[i] = this.commonFct.cambiaHorario(data[i].split(":")[0], data[i].split(":")[1], 0);
           

@@ -14,6 +14,7 @@ import { Detalle } from '../pages/detalle/detalle';
 import { Recordatorio } from '../pages/recordatorio/recordatorio';
 
 import { CommonFunctions } from '../providers/common-functions';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CommonFunctions } from '../providers/common-functions';
     StatusBar,
     SplashScreen,
     CommonFunctions,
+    LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
