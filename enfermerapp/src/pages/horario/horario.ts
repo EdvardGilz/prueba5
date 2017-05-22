@@ -92,34 +92,6 @@ export class Horario {
   getData(data) {
     let modal = this.modalCtrl.create(Detalle, {data: data, tipo: 2});
     modal.present();
-    // var mensaje = "";
-    // data.data.forEach(element => {
-    //   mensaje += "-" + element.medicina + "<br>";
-
-    //   var fecha = this.commonFct.cambiaFecha(element.UltimaTomaFecha.split(" ")[0]);
-    //   var hr = element.UltimaTomaFecha.split(" ")[1];
-    //   var ultimaHora = this.commonFct.cambiaHorario(hr.split(":")[0], hr.split(":")[1], 0);
-    //   mensaje += " Ultima toma: " + fecha + " " + ultimaHora + "<br>";
-    //   mensaje += " Horarios: <br>";
-
-    //   var data = element.horarios;
-    //   for (var i = 0; i < data.length; i++) {
-    //     var hora = this.commonFct.cambiaHorario(data[i].split(":")[0], data[i].split(":")[1], 0);
-    //     if (i == data.length -1) {
-    //       mensaje += hora + "<br><br>";
-    //     }
-    //     else {
-    //       mensaje += hora + ", ";
-    //     }
-    //   }
-    // });
-    // let alert = this.alertCtrl.create({
-    //   title: "Horarios",
-    //   message: mensaje,
-    //   buttons: ['Ok']
-    // });
-
-    // alert.present();
   }
 
   eliminar() {

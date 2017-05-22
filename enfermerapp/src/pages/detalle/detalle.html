@@ -18,6 +18,10 @@
     <ion-card-header *ngIf="this.tipo == 0 || this.tipo == 1">
       Detalle de la medición <br> {{fecha}}
     </ion-card-header>
+    <ion-card-header *ngIf="this.tipo == 2">
+      Diagnóstico: {{diagnostico}}
+    </ion-card-header>
+
     <ion-card-content *ngIf="this.tipo == 0">
       
       <ion-row>
@@ -73,27 +77,36 @@
 
     </ion-card-content>
     <ion-card-content *ngIf="this.tipo == 2">
-      
-      <ion-row>
-        <ion-col col-6 col-md-3 col-lg-2>
-          Glucosa:
-        </ion-col>
-        <ion-col col-6 col-md-3 col-lg-2>
-          {{glucosa}}
-        </ion-col>
-        <ion-col col-6 col-md-3 col-lg-2>
-          Tomada:
-        </ion-col>
-        <ion-col col-6 col-md-3 col-lg-2>
-          {{ayunas}}
-        </ion-col>
-        <ion-col col-6 col-md-3 col-lg-2>
-          Observaciones:
-        </ion-col>
-        <ion-col col-6 col-md-3 col-lg-2>
-          {{obsG}}
-        </ion-col>
-      </ion-row>
+      <div *ngFor="let medicina of data.data">
+
+        <ion-item-group>
+          <ion-item-divider>Nombre</ion-item-divider>
+          <ion-item>
+            <ion-icon *ngIf="medicina.activo == 1" name='radio-button-on' color="secondary"></ion-icon>
+            <ion-icon *ngIf="medicina.activo == 0" name='radio-button-off' color="danger"></ion-icon>
+            {{medicina.medicina}}
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item-divider>Fecha primer toma</ion-item-divider>
+          <ion-item>{{medicina.PrimerTomaFechaMod1}}</ion-item>
+          <ion-item>{{medicina.PrimerTomaFechaMod2}}</ion-item>
+        </ion-item-group>
+        <ion-item-group>
+          <ion-item-divider>Fecha última toma</ion-item-divider>
+          <ion-item>{{medicina.UltimaTomaFechaMod1}}</ion-item>
+          <ion-item>{{medicina.UltimaTomaFechaMod2}}</ion-item>
+        </ion-item-group>
+
+        <ion-item-group>
+          <ion-item-divider>Horarios</ion-item-divider>
+          <ion-item *ngFor="let horario of medicina.horarios">
+            {{horario}}
+          </ion-item>
+        </ion-item-group>
+        
+        <br>
+      </div>
 
     </ion-card-content>
   </ion-card>
