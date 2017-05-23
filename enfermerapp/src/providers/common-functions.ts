@@ -35,11 +35,12 @@ export class CommonFunctions {
     var min = fecha.split(" ")[1].split(":")[1];
 
     // var fechaComp = moment().date(dia).month(mes).year(anio).hours(hora).minutes(min);
-    var fechaComp = new Date();
-    fechaComp.setFullYear(anio);
-    fechaComp.setMonth(mes);
-    fechaComp.setDate(dia);
-    fechaComp.setHours(hora);
+    var fechaComp = new Date(Date.UTC(anio, mes, dia, hora, min, 0, 0));
+    // fechaComp.setFullYear(anio);
+    // fechaComp.setMonth(mes);
+    // fechaComp.setDate(dia);
+    // fechaComp.setHours(15, 35, 1);
+    // fechaComp.setMinutes(min);
 
     return fechaComp;
   }
