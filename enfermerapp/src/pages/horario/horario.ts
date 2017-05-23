@@ -46,10 +46,8 @@ export class Horario {
         }
       }).then(() => {
         this.medicamentos.forEach(element => {
-          console.log(element.data);
           element.data.forEach(element2 => {
             var res = this.commonFct.compararFecha(element2.UltimaTomaFecha);
-            console.log(res);
             if (res == false) {
               element2.activo = 0;
             }
