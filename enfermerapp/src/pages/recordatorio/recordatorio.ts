@@ -133,9 +133,11 @@ export class Recordatorio {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 12 am cada 12 hrs
         var index = this.commonFct.getValArray();
         var dataHr3 = horariosArray[index];
-        console.log(this.commonFct.getValArray());
-        // proximaTomaTxt += "<br><br> Ultima toma: <br>" + fechaU + " " + this.commonFct.cambiaHorario(dataHr3.split(":")[0], dataHr3.split(":")[1], 0);
-        // medicamento.UltimaTomaFecha = this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + dataHr3;
+        console.log(index);
+        console.log(horariosArray);
+        console.log(horariosArray[index]);
+        proximaTomaTxt += "<br><br> Ultima toma: <br>" + fechaU + " " + this.commonFct.cambiaHorario(dataHr3.split(":")[0], dataHr3.split(":")[1], 0);
+        medicamento.UltimaTomaFecha = this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + dataHr3;
       }
     }
     medicamento.horarios = horariosArray;

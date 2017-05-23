@@ -90,6 +90,7 @@ export class CommonFunctions {
 
     if (hora == "") {
       hora = horas[0];
+      this.setValArray(1);
     }
 
     return hora;
