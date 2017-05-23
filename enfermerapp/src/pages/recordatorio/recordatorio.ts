@@ -130,10 +130,12 @@ export class Recordatorio {
 
       /** ULTIMA TOMA */
       if (medicamento.indefinido == false) {
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 12 am cada 12 hrs
         var index = this.commonFct.getValArray();
         var dataHr3 = horariosArray[index];
-        proximaTomaTxt += "<br><br> Ultima toma: <br>" + fechaU + " " + this.commonFct.cambiaHorario(dataHr3.split(":")[0], dataHr3.split(":")[1], 0);
-        medicamento.UltimaTomaFecha = this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + dataHr3;
+        console.log(this.commonFct.getValArray());
+        // proximaTomaTxt += "<br><br> Ultima toma: <br>" + fechaU + " " + this.commonFct.cambiaHorario(dataHr3.split(":")[0], dataHr3.split(":")[1], 0);
+        // medicamento.UltimaTomaFecha = this.commonFct.sumarNDias(parseInt(medicamento.dias)) + " " + dataHr3;
       }
     }
     medicamento.horarios = horariosArray;
@@ -194,6 +196,18 @@ export class Recordatorio {
       }
     });
     console.log(this.medicamentosData);
+    var notificaciones = [];
+
+    for (var i = 0; i < this.medicamentosData.length; i++) {
+      var id = Math.floor((Math.random() * 100) + 1);
+      var fecha = this.commonFct.getADay(this.medicamentosData[i].PrimerTomaFecha);
+      console.log(this.medicamentosData[i].PrimerTomaFecha);
+      console.log(fecha);
+      console.log(new Date());
+      notificaciones.push({"id": id, "title": "Hora de tu medicina", "at": fecha, "text": this.medicamentosData[i].medicina});
+    }
+
+    this.localNotifications.schedule(notificaciones);
     // this.viewCtrl.dismiss({"success": 1, "data": this.medicamentosData, "diagnostico": this.diagnostico});
   }
 

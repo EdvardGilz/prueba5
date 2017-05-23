@@ -55,8 +55,6 @@ export class Detalle {
       this.diagnostico = this.data.diagnostico;
       this.txt = this.data.txt.charAt(0).toUpperCase() + this.data.txt.slice(1);
 
-
-      var mensaje = "";
       this.data.data.forEach(element => {
 
         var fecha1 = this.commonFct.cambiaFecha(element.PrimerTomaFecha.split(" ")[0]) + " del " + element.PrimerTomaFecha.split(" ")[0].split("/")[2];

@@ -27,6 +27,23 @@ export class CommonFunctions {
     return now;
   }
 
+  getADay(fecha) {
+    var dia = fecha.split(" ")[0].split("/")[0];
+    var mes = fecha.split(" ")[0].split("/")[1] -1;
+    var anio = fecha.split(" ")[0].split("/")[2];
+    var hora = fecha.split(" ")[1].split(":")[0];
+    var min = fecha.split(" ")[1].split(":")[1];
+
+    // var fechaComp = moment().date(dia).month(mes).year(anio).hours(hora).minutes(min);
+    var fechaComp = new Date();
+    fechaComp.setFullYear(anio);
+    fechaComp.setMonth(mes);
+    fechaComp.setDate(dia);
+    fechaComp.setHours(hora);
+
+    return fechaComp;
+  }
+
   suma1Dia() {
     var now = moment().add(1, "d").format("DD/MM/YYYY");
     return now;
@@ -48,7 +65,6 @@ export class CommonFunctions {
   }
 
   compararFecha(fecha) {
-    console.log(fecha);
     var dia = fecha.split(" ")[0].split("/")[0];
     var mes = fecha.split(" ")[0].split("/")[1];
     var anio = fecha.split(" ")[0].split("/")[2];
