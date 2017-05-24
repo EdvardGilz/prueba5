@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, AlertController } from 'ionic-angular';
+import { IonicPage, ViewController, AlertController, Platform } from 'ionic-angular';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { CommonFunctions } from '../../providers/common-functions';
@@ -25,7 +25,8 @@ export class Recordatorio {
   constructor(public viewCtrl: ViewController, 
               public alertCtrl: AlertController,
               public commonFct: CommonFunctions,
-              private localNotifications: LocalNotifications) {
+              private localNotifications: LocalNotifications,
+              public platform: Platform) {
     this.medicamentos.push({"indefinido": false, "diasD": true, "horasD": true, "PTD": true, "activo": 1});
   }
 
@@ -189,22 +190,52 @@ export class Recordatorio {
   }
 
   guardar() {
+    console.log("algo");
+    var notificaciones = [];
+    var sonido;
+
+    if (this.platform.is("android")) {
+      sonido = "assets/ringtone/wa_wa_waaa.mp3";
+    }
+    else{
+      sonido = "assets/ringtone/wa_wa_waaa.caf";
+    }
+
     this.medicamentos.forEach(element => {
       if (element.PrimerTomaFecha) {
         this.medicamentosData.push(element);
       }
     });
-    var notificaciones = [];
 
     for (var i = 0; i < this.medicamentosData.length; i++) {
-      var id = Math.floor((Math.random() * 100) + 1);
-      var fecha = this.commonFct.getADay(this.medicamentosData[i].PrimerTomaFecha);
-      
-      notificaciones.push({"id": id, "title": "Hora de tu medicina", "at": fecha, "text": this.medicamentosData[i].medicina});
+      var fecha;
+      var paso1 = String(24 / parseInt(this.medicamentosData[i].horas));
+      var numSteps;
+
+      if (this.medicamentosData[i].indefinido == false) {
+        numSteps = parseInt(paso1) * parseInt(this.medicamentosData[i].dias);
+      }
+      else {
+        numSteps = 10;
+      }
+
+      console.log(numSteps);
+      for (var j=0; j < numSteps; j++) {
+        var id = Math.floor((Math.random() * 1000) + 1);
+        
+        if (j == 0) {
+          fecha = this.commonFct.getADay(this.medicamentosData[i].PrimerTomaFecha, 0);
+        }
+        else {
+          fecha = this.commonFct.getADay(fecha, parseInt(this.medicamentosData[i].horas));
+        }
+        
+        notificaciones.push({"id": id, "title": "Hora de tu medicina", "at": fecha, "text": this.medicamentosData[i].medicina, "sound": sonido});
+      }
     }
 
     this.localNotifications.schedule(notificaciones);
-    // this.viewCtrl.dismiss({"success": 1, "data": this.medicamentosData, "diagnostico": this.diagnostico});
+    this.viewCtrl.dismiss({"success": 1, "data": this.medicamentosData, "diagnostico": this.diagnostico});
   }
 
   cerrar() {

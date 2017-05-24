@@ -27,14 +27,28 @@ export class CommonFunctions {
     return now;
   }
 
-  getADay(fecha) {
-    var dia = fecha.split(" ")[0].split("/")[0];
-    var mes = fecha.split(" ")[0].split("/")[1] -1;
-    var anio = fecha.split(" ")[0].split("/")[2];
-    var hora = fecha.split(" ")[1].split(":")[0];
-    var min = fecha.split(" ")[1].split(":")[1];
+  getADay(fecha, extra: number) {
+    var fechaComp;
 
-    var fechaComp = new Date(anio, mes, dia, hora, min, 0);
+    if (extra == 0) {
+      var dia = fecha.split(" ")[0].split("/")[0];
+      var mes = fecha.split(" ")[0].split("/")[1] -1;
+      var anio = fecha.split(" ")[0].split("/")[2];
+      var hora = fecha.split(" ")[1].split(":")[0];
+      var min = fecha.split(" ")[1].split(":")[1];
+
+      fechaComp = new Date(anio, mes, dia, hora, min, 0);
+    }
+    else {
+      var fechatemp = new Date(fecha);
+      var dia2 = fechatemp.getDate();
+      var mes2 = fechatemp.getMonth();
+      var anio2 = fechatemp.getFullYear();
+      var hora2 = fechatemp.getHours() + extra;
+      var min2 = fechatemp.getMinutes();
+
+      fechaComp = new Date(anio2, mes2, dia2, hora2, min2, 0);
+    }
 
     return fechaComp;
   }
