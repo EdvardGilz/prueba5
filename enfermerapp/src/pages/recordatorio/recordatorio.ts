@@ -190,15 +190,14 @@ export class Recordatorio {
   }
 
   guardar() {
-    console.log("algo");
     var notificaciones = [];
     var sonido;
 
     if (this.platform.is("android")) {
-      sonido = "assets/ringtone/wa_wa_waaa.mp3";
+      sonido = "file://assets/ringtone/wa_wa_waaa.mp3";
     }
     else{
-      sonido = "assets/ringtone/wa_wa_waaa.caf";
+      sonido = "file://assets/ringtone/wa_wa_waaa.caf";
     }
 
     this.medicamentos.forEach(element => {
